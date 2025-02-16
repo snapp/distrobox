@@ -2,5 +2,5 @@ version: "1"
 rules:
   - base: main
     upstream: 89luca89:main
-    mergeMethod: merge
+    mergeMethod: rebase
     mergeUnstable: false
