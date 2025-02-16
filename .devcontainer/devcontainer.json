@@ -1,0 +1,15 @@
+{
+    "name": "Fedora 38 COPR Builder",
+    "build": {
+        "dockerfile": "Containerfile",
+        "context": "..",
+        "args": {
+            "FEDORA_VERSION": "38"
+        }
+    },
+    "privileged": false,
+    "runArgs": [
+        "--secret", "copr-cli.config"
+    ],
+    "postCreateCommand": "mkdir -p /root/.config; ln -s /run/secrets/copr-cli.config /root/.config/copr"
+}

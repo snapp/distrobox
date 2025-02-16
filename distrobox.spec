@@ -3,7 +3,7 @@
 # https://github.com/89luca89/distrobox/issues/127
 %global __brp_mangle_shebangs_exclude_from %{_bindir}/distrobox-(export|init)$
 
-Name:      distrobox-git
+Name:      distrobox
 Version:   {{{ git_dir_version }}}
 Release:   1%{?dist}
 
@@ -18,6 +18,8 @@ Provides:  distrobox
 BuildArch: noarch
 
 BuildRequires: ImageMagick
+BuildRequires: podman
+BuildRequires: bash-completion
 
 Requires: (podman or %{_bindir}/docker)
 Requires: %{_bindir}/basename
@@ -26,7 +28,7 @@ Requires: %{_bindir}/grep
 Requires: %{_bindir}/sed
 Requires: hicolor-icon-theme
 
-Suggests: bash-completions
+Suggests: bash-completion
 
 %description
 Use any linux distribution inside your terminal. Distrobox uses podman 
@@ -42,9 +44,6 @@ external usb devices and graphical apps (X11/Wayland) and audio.
 
 %install
 ./install -P %{buildroot}/%{_prefix}
-
-#install -d -m0755 %{buildroot}%{_docdir}/%{name}
-#install -m 0644 docs/*.md %{buildroot}%{_docdir}/%{name}
 
 # Move the icon 
 mkdir -p %{buildroot}%{_datadir}/icons/hicolor/scalable/apps
@@ -64,7 +63,7 @@ for i in create enter export init list rm stop host-exec; do
     %{buildroot}%{_bindir}/distrobox-$i -V
 done
 
-rm %{buildroot}%{_bindir}/distrobox-git.spec
+rm %{buildroot}%{_bindir}/distrobox.spec
 
 %files
 %license COPYING.md

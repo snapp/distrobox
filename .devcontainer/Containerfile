@@ -3,10 +3,12 @@ ARG FEDORA_VERSION=38
 # Use Fedora as the base image
 FROM registry.fedoraproject.org/fedora:${FEDORA_VERSION}
 
-# Install runtime dependencies
+# Install build dependencies
 RUN dnf -y install \
-    podman \
+    copr-cli \
+    fedora-packager \
+    ImageMagick \
+    mock \
+    rpm-build \
+    rpmdevtools \
     && dnf clean all
-
-# Install Distrobox Scripts
-COPY ./distrobox ./distrobox-* /usr/bin/
